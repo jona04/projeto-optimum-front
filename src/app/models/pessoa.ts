@@ -1,12 +1,13 @@
+import { Contato } from './contato';
 export class Pessoa{
   id: number;
   nome: string;
-  cpf: number;
+  cpf: string;
   nascimento: string;
-  endereço: string;
+  endereco: string;
   bairro: string;
   cidade: string;
   estado: string;
-  cep: number;
-  contatos: string;
+  cep: string;
+  contatos: Contato[];
 }

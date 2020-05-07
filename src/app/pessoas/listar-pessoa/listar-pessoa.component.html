@@ -1,0 +1,34 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>CPF</th>
+      <th>Nascimento</th>
+      <th>Endereço</th>
+      <th>Bairro</th>
+      <th>Cidade</th>
+      <th>Estado</th>
+      <th>CEP</th>
+      <th>Contato</th>
+      <th>Opções</th>
+  </tr>
+  </thead>
+
+
+  <tbody>
+    <tr *ngFor="let pessoa of pessoas">
+      <td>{{ pessoa.nome }}</td>
+      <td>{{ pessoa.cpf }}</td>
+      <td>{{ pessoa.nascimento }}</td>
+      <td>{{ pessoa.endereco }}</td>
+      <td>{{ pessoa.bairro }}</td>
+      <td>{{ pessoa.cidade }}</td>
+      <td>{{ pessoa.estado }}</td>
+      <td>{{ pessoa.cep }}</td>
+      <td>{{ pessoa.contatos }}</td>
+      <td>
+        <a href="" class="btn btn-danger">Deletar</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

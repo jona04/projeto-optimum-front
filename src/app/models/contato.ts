@@ -1,6 +1,6 @@
 export class Contato{
   id: number;
   email: string;
-  telefone: number;
+  telefone: string;
   skype: string;
 }
