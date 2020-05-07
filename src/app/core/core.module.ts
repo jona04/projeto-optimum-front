@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { NgModule } from '@angular/core';
@@ -6,6 +7,9 @@ import { NgModule } from '@angular/core';
   declarations: [
     FooterComponent,
     NavbarComponent
+  ],
+  imports:[
+    RouterModule
   ],
   exports:[
     FooterComponent,

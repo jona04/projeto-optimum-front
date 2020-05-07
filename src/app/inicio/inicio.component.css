@@ -1,0 +1,15 @@
+h1{
+  width:fit-content;
+  margin:20px auto 0 auto;
+}
+h3{
+  width:fit-content;
+  margin:20px auto 0 auto;
+}
+.buttons-center{
+  width:fit-content;
+  margin:20px auto 0 auto;
+}
+button{
+  width: 100%;
+}

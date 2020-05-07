@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a href="/" class="navbar-brand">Course Manager</a>
+  <a [routerLink]="['/']" class="navbar-brand">Inicio</a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,8 +9,11 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-              <a href="/" class="nav-link">Courses</a>
+              <a routerLink="/listar-pessoas" routerLinkActive="active" class="nav-link">Listar Pessoas</a>
           </li>
+          <li class="nav-item">
+            <a routerLink="/cadastrar-pessoa" routerLinkActive="active" class="nav-link">Cadastrar Pessoa </a>
+        </li>
       </ul>
   </div>
 </nav>
