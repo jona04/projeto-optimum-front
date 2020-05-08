@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { ListarPessoaComponent } from './listar-pessoa/listar-pessoa.component';
@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
     CadastrarPessoaComponent
   ],
   imports: [
+    ReactiveFormsModule,
     FormsModule,
     CommonModule
   ]
