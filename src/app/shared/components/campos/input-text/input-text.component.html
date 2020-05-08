@@ -1,0 +1,15 @@
+<div [formGroup]="formGroup">
+    <input [placeholder]="titulo" [name]="controlName" [formControlName]="controlName" class="form-control">
+    <div *ngIf="validacao.hasErrorValidar(formControl,'required')"
+        class="msg-error">
+        Campo Obrigatório
+    </div>
+    <div *ngIf="validacao.hasErrorValidar(formControl,'minlength')"
+    class="msg-error">
+      Nome deve ter no minimo {{ validacao.lengthValidar(formControl, 'minlength') }} caracteres
+    </div>
+    <div *ngIf="validacao.hasErrorValidar(formControl,'maxlength')"
+    class="msg-error">
+      Nome deve ter no máximo {{ validacao.lengthValidar(formControl, 'maxlength') }} caracteres
+    </div>
+</div>

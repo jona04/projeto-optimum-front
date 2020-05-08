@@ -5,124 +5,59 @@
     <div class="form-group row">
         <label class="col-sm-2 col-from-label">Nome:</label>
         <div class="col-sm-10">
-          <input required placeholder="Nome" name="nome" formControlName="nome" class="form-control">
-          <div *ngIf="validacao.hasErrorValidar(controleInput.nome,'required')"
-            class="msg-error">
-            Campo Obrigatório
-          </div>
-          <div *ngIf="validacao.hasErrorValidar(controleInput.nome,'minlength')"
-          class="msg-error">
-            Nome deve ter no mínimo 5 caracteres
-          </div>
-          <div *ngIf="validacao.hasErrorValidar(controleInput.nome,'maxlength')"
-          class="msg-error">
-            Nome deve ter no mínimo 40 caracteres
-          </div>
+          <app-input-text titulo="Nome" [formGroup]="cadastro" controlName="nome" ></app-input-text>
+
         </div>
 
     </div>
     <div class="form-group row">
       <label class="col-sm-2 col-from-label">CPF:</label>
       <div class="col-sm-10">
-        <input placeholder="CPF" name="cpf" formControlName="cpf" class="form-control">
-        <div *ngIf="validacao.hasErrorValidar(controleInput.cpf,'required')"
-            class="msg-error">
-            Campo Obrigatório
-        </div>
-        <div *ngIf="validacao.hasErrorValidar(controleInput.cpf,'maxlength')"
-        class="msg-error">
-          Nome deve ter no máximo 11 caracteres
-        </div>
+        <app-input-text titulo="CPF" [formGroup]="cadastro" controlName="cpf" ></app-input-text>
+
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-2 col-from-label">Nascimento:</label>
       <div class="col-sm-10">
-        <input placeholder="Nascimento" name="nascimento" formControlName="nascimento" class="form-control">
-
-        <div *ngIf="validacao.hasErrorValidar(controleInput.nascimento,'required')"
-            class="msg-error">
-            Campo Obrigatório
-        </div>
-        <div *ngIf="validacao.hasErrorValidar(controleInput.nascimento,'maxlength')"
-        class="msg-error">
-          Nome deve ter no máximo 10 caracteres
-        </div>
+        <app-input-text titulo="Nascimento" [formGroup]="cadastro" controlName="nascimento" ></app-input-text>
 
       </div>
     </div>
+
     <div class="form-group row">
-      <label class="col-sm-2 col-from-label">Endereço:</label>
+      <label class="col-sm-2 col-from-label">Endereco:</label>
       <div class="col-sm-10">
-        <input placeholder="Enderço" name="endereco" formControlName="endereco" class="form-control">
-        <div *ngIf="validacao.hasErrorValidar(controleInput.endereco,'required')"
-            class="msg-error">
-            Campo Obrigatório
-        </div>
-        <div *ngIf="validacao.hasErrorValidar(controleInput.endereco,'minlength')"
-        class="msg-error">
-          Nome deve ter no minimo 10 caracteres
-        </div>
-        <div *ngIf="validacao.hasErrorValidar(controleInput.endereco,'maxlength')"
-        class="msg-error">
-          Nome deve ter no máximo 40 caracteres
-        </div>
+        <app-input-text titulo="Endereco" [formGroup]="cadastro" controlName="endereco" ></app-input-text>
       </div>
     </div>
+
     <div class="form-group row">
       <label class="col-sm-2 col-from-label">Bairro:</label>
       <div class="col-sm-10">
-        <input placeholder="Bairro" name="bairro" formControlName="bairro" class="form-control">
-        <div *ngIf="validacao.hasErrorValidar(controleInput.bairro,'required')"
-            class="msg-error">
-            Campo Obrigatório
-        </div>
-        <div *ngIf="validacao.hasErrorValidar(controleInput.bairro,'maxlength')"
-            class="msg-error">
-            Nome deve ter no máximo 40 caracteres
-        </div>
+        <app-input-text titulo="Bairro" [formGroup]="cadastro" controlName="bairro" ></app-input-text>
+
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-2 col-from-label">Cidade:</label>
       <div class="col-sm-10">
-        <input placeholder="Cidade" name="cidade" formControlName="cidade" class="form-control">
-        <div *ngIf="validacao.hasErrorValidar(controleInput.cidade,'required')"
-        class="msg-error">
-          Campo Obrigatorio
-        </div>
-        <div *ngIf="validacao.hasErrorValidar(controleInput.cidade,'maxlength')"
-        class="msg-error">
-        Nome deve ter no máximo 40 caracteres
-        </div>
+        <app-input-text titulo="Cidade" [formGroup]="cadastro" controlName="cidade" ></app-input-text>
+
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-2 col-from-label">Estado:</label>
       <div class="col-sm-10">
-        <input placeholder="Estado" name="estado" formControlName="estado" class="form-control">
-        <div *ngIf="validacao.hasErrorValidar(controleInput.estado,'required')"
-        class="msg-error">
-          Campo Obrigatorio
-        </div>
-        <div *ngIf="validacao.hasErrorValidar(controleInput.estado,'maxlength')"
-        class="msg-error">
-        Nome deve ter no máximo 2 caracteres
-        </div>
+        <app-input-text titulo="Estado" [formGroup]="cadastro" controlName="estado" ></app-input-text>
+
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-2 col-from-label">CEP:</label>
       <div class="col-sm-10">
-        <input placeholder="CEP" name="cep" formControlName="cep" class="form-control">
-        <div *ngIf="validacao.hasErrorValidar(controleInput.cep,'required')"
-        class="msg-error">
-          Campo Obrigatorio
-        </div>
-        <div *ngIf="validacao.hasErrorValidar(controleInput.cep,'maxlength')"
-        class="msg-error">
-        Nome deve ter no máximo 8 caracteres
-        </div>
+        <app-input-text titulo="CEP" [formGroup]="cadastro" controlName="cep" ></app-input-text>
+
       </div>
     </div>
 
