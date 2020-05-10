@@ -1,6 +1,8 @@
+import { Pessoa } from 'src/app/models/pessoa';
+import { PessoaService } from './../pessoa.service';
 import { ValidarCamposService } from './../../shared/components/campos/validar-campos.service';
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, FormArray,FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-cadastrar-pessoa',
@@ -10,9 +12,13 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class CadastrarPessoaComponent implements OnInit {
 
   cadastro: FormGroup;
+  contatos = new FormArray([]);
 
-  constructor(public validacao: ValidarCamposService,
-              private fb: FormBuilder) {}
+  constructor(
+    public validacao: ValidarCamposService,
+    private fb: FormBuilder,
+    private pessoaService: PessoaService) {
+    }
 
   get controleInput(){
     return this.cadastro.controls;
@@ -27,11 +33,11 @@ export class CadastrarPessoaComponent implements OnInit {
       ]],
       cpf: ['', [
         Validators.required,
-        Validators.maxLength(11)
+        Validators.minLength(11),
       ]],
       nascimento: ['', [
         Validators.required,
-        Validators.maxLength(10)
+        Validators.minLength(8)
       ]],
       endereco: ['', [
         Validators.required,
@@ -52,9 +58,11 @@ export class CadastrarPessoaComponent implements OnInit {
       ]],
       cep: ['', [
         Validators.required,
-        Validators.maxLength(8)
+        Validators.minLength(8)
       ]]
     });
+
+    this.addContato();
   }
 
   resetar(): void{
@@ -66,7 +74,26 @@ export class CadastrarPessoaComponent implements OnInit {
     if (this.cadastro.invalid){
       return;
     }
+    console.log(this.contatos.value);
 
+    let z = Object.assign(this.cadastro.value, this.contatos.value);
+    console.log(z);
     alert("Sucesso " + JSON.stringify(this.cadastro.value, null, 4));
+
+    // this.pessoaService.save(this.cadastro.value).subscribe({
+    //   next: pessoa => console.log('pessoa salva com sucessso ', pessoa),
+    //   error: err => console.log("error: ", err)
+    // });
+  }
+
+  addContato() {
+    const group = new FormGroup({
+      tipo: new FormControl(''),
+      valor: new FormControl('')
+    });
+    this.contatos.push(group);
+  }
+  removerContato(index: number) {
+    this.contatos.removeAt(index);
   }
 }

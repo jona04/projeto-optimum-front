@@ -1,6 +1,9 @@
+import { PessoaService } from './../pessoa.service';
 
 import { Component, OnInit } from '@angular/core';
 import { Pessoa } from 'src/app/models/pessoa';
+
+
 
 @Component({
   selector: 'app-listar-pessoa',
@@ -11,16 +14,29 @@ export class ListarPessoaComponent implements OnInit {
 
   pessoas: Pessoa[] = [];
 
-  constructor() { }
+  constructor(private pessoaService: PessoaService) { }
 
   ngOnInit(): void{
     this.retrieveAll();
   }
 
-  retrieveAll(){
-    this.pessoas = PESSOAS
-    return this.pessoas;
+
+  retrieveAll(): void{
+    this.pessoaService.retrieveAll().subscribe({
+      next: pessoas => {
+        this.pessoas = pessoas;
+      },
+      error: err => console.log("error", err)
+    });
   }
+
+
+  // retrieveAll(){
+  //   this.pessoas = PESSOAS
+  //   return this.pessoas;
+  // }
+
+
 }
 
 var PESSOAS: Pessoa[] = [
@@ -38,9 +54,8 @@ var PESSOAS: Pessoa[] = [
     contatos: [
       {
         id: 1,
-        email: "jonatas.iw@gmail.com",
-        telefone: "86999719767",
-        skype: "jonatas.ol",
+        valor: "jonatas.iw@gmail.com",
+        tipo: "EMAIL"
       }
     ]
   }

@@ -1,4 +1,12 @@
-.formulario_cadastro{
+.formulario-cadastro{
   margin: 0 auto;
   max-width: 600px;
+}
+
+.texto-contato-formulario{
+  font-size:12px;
+}
+.texto-titulo-contato-formulario{
+  font-size:15px;
+  font-weight: bold;
 }

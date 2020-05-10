@@ -1,7 +1,9 @@
 <h2>Cadastrar Pessoa</h2>
 
 <hr>
-<form class="formulario_cadastro" [formGroup]="cadastro">
+
+<div class="formulario-cadastro">
+<form class="formulario-cadastro" [formGroup]="cadastro">
     <div class="form-group row">
         <label class="col-sm-2 col-from-label">Nome:</label>
         <div class="col-sm-10">
@@ -13,15 +15,29 @@
     <div class="form-group row">
       <label class="col-sm-2 col-from-label">CPF:</label>
       <div class="col-sm-10">
-        <app-input-text titulo="CPF" [formGroup]="cadastro" controlName="cpf" ></app-input-text>
-
+        <input placeholder="CPF" name="cpf" formControlName="cpf" class="form-control" >
+        <div *ngIf="validacao.hasErrorValidar(controleInput.cpf, 'required')"
+            class="msg-error">
+            Campo Obrigatório
+        </div>
+        <div *ngIf="validacao.hasErrorValidar(controleInput.cpf,'minlength')"
+        class="msg-error">
+          Campo deve ter no minimo 11 números
+        </div>
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-2 col-from-label">Nascimento:</label>
       <div class="col-sm-10">
-        <app-input-text titulo="Nascimento" [formGroup]="cadastro" controlName="nascimento" ></app-input-text>
-
+        <input placeholder="Nascimento" name="nascimento" formControlName="nascimento" class="form-control" mask="00/00/0000">
+        <div *ngIf="validacao.hasErrorValidar(controleInput.nascimento, 'required')"
+            class="msg-error">
+            Campo Obrigatório
+        </div>
+        <div *ngIf="validacao.hasErrorValidar(controleInput.nascimento,'minlength')"
+        class="msg-error">
+          Campo deve ter no minimo 8 números
+        </div>
       </div>
     </div>
 
@@ -56,12 +72,52 @@
     <div class="form-group row">
       <label class="col-sm-2 col-from-label">CEP:</label>
       <div class="col-sm-10">
-        <app-input-text titulo="CEP" [formGroup]="cadastro" controlName="cep" ></app-input-text>
-
+        <input placeholder="CEP" name="cep" formControlName="cep" class="form-control" mask="00000-000">
+        <div *ngIf="validacao.hasErrorValidar(controleInput.cep, 'required')"
+            class="msg-error">
+            Campo Obrigatório
+        </div>
+        <div *ngIf="validacao.hasErrorValidar(controleInput.cep,'minlength')"
+        class="msg-error">
+          Campo deve ter no minimo 8 números
+        </div>
       </div>
     </div>
-
-
-    <button type="submit" (click)="salvar()" class="btn btn-primary mr-2">Salvar</button>
-    <button type="reset" (click)="resetar()" class="btn btn-secundary">Limpar</button>
 </form>
+
+<div class="mt-5">
+  <hr />
+  <form class="mt-2">
+    <p><span class="texto-titulo-contato-formulario">Adicionar contatos</span> <br>
+      <span class="texto-contato-formulario">Escolha o tipo do contato, em seguida prencha o campo ao lado com seu email, telefone ou skype.</span>
+    </p>
+
+  <div class="form-row" *ngFor="let contato of contatos.controls; index as i">
+
+
+    <ng-container [formGroup]="contato">
+      <div class="input-group col-md-10">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="">Contato:</span>
+        </div>
+        <select class="form-control " formControlName="tipo">
+          <option value="" disabled selected>Tipo</option>
+          <option value="EMAIL">EMAIL</option>
+          <option value="TELEFONE">TELEFONE</option>
+          <option value="SKYPE">SKYPE</option>
+        </select>
+        <input class="form-control" formControlName="valor" />
+      </div>
+    </ng-container>
+    <button class="input-group col-md-2 btn btn-outline-danger" (click)="removerContato(i)">Remover</button>
+  </div>
+
+  </form>
+  <button class="btn btn-outline-info mt-2" (click)="addContato()">Adicionar outro contato</button>
+</div>
+
+<br>
+
+<button type="submit" (click)="salvar()" class="btn btn-primary btn-lg btn-block mt-4">Salvar Pessoa</button>
+<button type="reset" (click)="resetar()" class="btn btn-secundary btn-lg btn-block">Limpar formulário</button>
+</div>
