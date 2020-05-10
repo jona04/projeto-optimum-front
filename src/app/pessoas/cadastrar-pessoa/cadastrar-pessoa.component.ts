@@ -3,6 +3,8 @@ import { PessoaService } from './../pessoa.service';
 import { ValidarCamposService } from './../../shared/components/campos/validar-campos.service';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, FormArray,FormControl, Validators} from '@angular/forms';
+import { format } from 'url';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastrar-pessoa',
@@ -11,17 +13,25 @@ import {FormBuilder, FormGroup, FormArray,FormControl, Validators} from '@angula
 })
 export class CadastrarPessoaComponent implements OnInit {
 
+  valor;
+
   cadastro: FormGroup;
   contatos = new FormArray([]);
+  contatoFormGroup: FormGroup;
+  nascimentoAux: String;
 
   constructor(
     public validacao: ValidarCamposService,
     private fb: FormBuilder,
-    private pessoaService: PessoaService) {
+    private pessoaService: PessoaService,
+    private router: Router) {
     }
 
   get controleInput(){
     return this.cadastro.controls;
+  }
+  get controleInputContato(){
+    return this.contatoFormGroup.controls;
   }
 
   ngOnInit() {
@@ -40,60 +50,123 @@ export class CadastrarPessoaComponent implements OnInit {
         Validators.minLength(8)
       ]],
       endereco: ['', [
-        Validators.required,
-        Validators.minLength(10),
+        Validators.minLength(5),
         Validators.maxLength(40)
       ]],
       bairro: ['', [
-        Validators.required,
         Validators.maxLength(40)
       ]],
       cidade: ['', [
-        Validators.required,
         Validators.maxLength(40)
       ]],
       estado: ['', [
-        Validators.required,
-        Validators.maxLength(2)
+        Validators.maxLength(20)
       ]],
       cep: ['', [
-        Validators.required,
         Validators.minLength(8)
       ]]
     });
 
+
+
+    this.contatoFormGroup = this.fb.group({
+      tipo: ['', [
+        Validators.required
+      ]],
+      valor: ['', [
+        Validators.required
+      ]],
+
+    });
+
     this.addContato();
+
   }
 
   resetar(): void{
     this.cadastro.reset;
   }
 
+
+  getValorTipo(){
+    console.log(this.valor);
+  }
+
   salvar(): void{
+
+
+
+    this.validarPessoa();
+
+
+    console.log(this.contatoFormGroup);
+    console.log(this.contatoFormGroup.valid);
+
+    if(this.cadastro.valid && this.contatoFormGroup.valid){
+
+      this.validarNascimento();
+
+      console.log(this.cadastro.value);
+
+      // alert("Sucesso " + JSON.stringify(this.cadastro.value, null, 4));
+
+      this.pessoaService.save(this.cadastro.value).subscribe({
+        next: pessoa => {
+          console.log('pessoa salva com sucessso ', pessoa);
+          alert("Pessoa adicionada com sucesso!");
+          this.router.navigate(['/listar-pessoas']);
+        },
+        error: err => alert(err.error.message)
+      });
+    }
+  }
+
+  addContato() {
+    this.contatoFormGroup = new FormGroup({
+      tipo: new FormControl(''),
+      valor: new FormControl('')
+    });
+    this.contatos.push(this.contatoFormGroup);
+  }
+
+  createFormGroup() {
+    return this.fb.group({
+      tipo: [""],
+      valor: [""],
+    });
+  }
+
+  removerContato(index: number) {
+    this.contatos.removeAt(index);
+  }
+
+  validarPessoa(){
     this.cadastro.markAllAsTouched();
     if (this.cadastro.invalid){
       return;
     }
-    console.log(this.contatos.value);
-
-    let z = Object.assign(this.cadastro.value, this.contatos.value);
-    console.log(z);
-    alert("Sucesso " + JSON.stringify(this.cadastro.value, null, 4));
-
-    // this.pessoaService.save(this.cadastro.value).subscribe({
-    //   next: pessoa => console.log('pessoa salva com sucessso ', pessoa),
-    //   error: err => console.log("error: ", err)
-    // });
   }
 
-  addContato() {
-    const group = new FormGroup({
-      tipo: new FormControl(''),
-      valor: new FormControl('')
-    });
-    this.contatos.push(group);
+  validarNascimento(){
+    if (this.cadastro.value.nascimento.length < 12){
+      var mydate = this.stringToStringISODate(this.cadastro.value.nascimento,"dd/MM/yyyy","/");
+      this.cadastro.value.nascimento = mydate;
+      this.cadastro.value.contatos =this.contatos.value;
+    }
   }
-  removerContato(index: number) {
-    this.contatos.removeAt(index);
+
+  stringToStringISODate(_date,_format,_delimiter)
+  {
+      var formatLowerCase=_format.toLowerCase();
+      var formatItems=formatLowerCase.split(_delimiter);
+      var dateItems=_date.split(_delimiter);
+      var monthIndex=formatItems.indexOf("mm");
+      var dayIndex=formatItems.indexOf("dd");
+      var yearIndex=formatItems.indexOf("yyyy");
+      var month=parseInt(dateItems[monthIndex]);
+      month-=1;
+      var formatedDate = new Date(dateItems[yearIndex],month,dateItems[dayIndex]);
+      return formatedDate.toISOString();
+
   }
 }

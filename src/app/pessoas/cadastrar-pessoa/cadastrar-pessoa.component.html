@@ -8,14 +8,13 @@
         <label class="col-sm-2 col-from-label">Nome:</label>
         <div class="col-sm-10">
           <app-input-text titulo="Nome" [formGroup]="cadastro" controlName="nome" ></app-input-text>
-
         </div>
 
     </div>
     <div class="form-group row">
       <label class="col-sm-2 col-from-label">CPF:</label>
       <div class="col-sm-10">
-        <input placeholder="CPF" name="cpf" formControlName="cpf" class="form-control" >
+        <input placeholder="CPF" name="cpf" formControlName="cpf" class="form-control" mask="000.000.000-00">
         <div *ngIf="validacao.hasErrorValidar(controleInput.cpf, 'required')"
             class="msg-error">
             Campo Obrigatório
@@ -29,7 +28,7 @@
     <div class="form-group row">
       <label class="col-sm-2 col-from-label">Nascimento:</label>
       <div class="col-sm-10">
-        <input placeholder="Nascimento" name="nascimento" formControlName="nascimento" class="form-control" mask="00/00/0000">
+        <input placeholder="Nascimento" name="nascimento" formControlName="nascimento" class="form-control" [dropSpecialCharacters]="false" mask="00/00/0000">
         <div *ngIf="validacao.hasErrorValidar(controleInput.nascimento, 'required')"
             class="msg-error">
             Campo Obrigatório
@@ -72,7 +71,7 @@
     <div class="form-group row">
       <label class="col-sm-2 col-from-label">CEP:</label>
       <div class="col-sm-10">
-        <input placeholder="CEP" name="cep" formControlName="cep" class="form-control" mask="00000-000">
+        <input placeholder="CEP" name="cep" formControlName="cep"  class="form-control" [dropSpecialCharacters]="false" mask="00000-000">
         <div *ngIf="validacao.hasErrorValidar(controleInput.cep, 'required')"
             class="msg-error">
             Campo Obrigatório
@@ -92,26 +91,39 @@
       <span class="texto-contato-formulario">Escolha o tipo do contato, em seguida prencha o campo ao lado com seu email, telefone ou skype.</span>
     </p>
 
-  <div class="form-row" *ngFor="let contato of contatos.controls; index as i">
+    <ng-container [formGroup]="contatoFormGroup">
+          <div *ngFor="let contato of contatos.controls; index as i">
+
+            <div class="form-row" [formGroup]="contato">
+
+                <div class="input-group col-10">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="">Contato:</span>
+                  </div>
+                  <select required class="form-control" name="tipo" formControlName="tipo">
+                    <option value="" disabled selected>Tipo</option>
+                    <option value="EMAIL">EMAIL</option>
+                    <option value="TELEFONE">TELEFONE</option>
+                    <option value="SKYPE">SKYPE</option>
+                  </select>
+                  <div *ngIf="contato.get('tipo').value=='TELEFONE'; else loggedOut">
+                    <input required class="form-control" name="valor" formControlName="valor" [dropSpecialCharacters]="false" mask="(00) 0 0000-0000" />
+                  </div>
+
+                  <ng-template #loggedOut>
+                    <input required class="form-control" name="valor" formControlName="valor" />
+                  </ng-template>
 
 
-    <ng-container [formGroup]="contato">
-      <div class="input-group col-md-10">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="">Contato:</span>
-        </div>
-        <select class="form-control " formControlName="tipo">
-          <option value="" disabled selected>Tipo</option>
-          <option value="EMAIL">EMAIL</option>
-          <option value="TELEFONE">TELEFONE</option>
-          <option value="SKYPE">SKYPE</option>
-        </select>
-        <input class="form-control" formControlName="valor" />
-      </div>
+                </div>
+                <button class="input-group col-2 btn btn-outline-danger" (click)="removerContato(i)">Remover</button>
+            </div>
+            <div *ngIf="(contato.touched || contato.dirty) && contato.invalid"
+                      class="msg-error">
+                      Campo Obrigatório
+                  </div>
+          </div>
     </ng-container>
-    <button class="input-group col-md-2 btn btn-outline-danger" (click)="removerContato(i)">Remover</button>
-  </div>
-
   </form>
   <button class="btn btn-outline-info mt-2" (click)="addContato()">Adicionar outro contato</button>
 </div>

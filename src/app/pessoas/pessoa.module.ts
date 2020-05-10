@@ -7,11 +7,14 @@ import { CadastrarPessoaComponent } from './cadastrar-pessoa/cadastrar-pessoa.co
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
-// import { NgxMaskModule, IConfig } from 'ngx-mask'
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-// const maskConfig: Partial<IConfig> = {
-//   validation: false,
-// };
+
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
 
 @NgModule({
   declarations:[
@@ -23,7 +26,9 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     CommonModule,
     CamposModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxMaskModule.forRoot(maskConfig),
+    NgbModule
   ]
 })
 export class PessoaModule{}

@@ -6,6 +6,7 @@ body{
   padding:0;
   background-color:#F3F3F3;
   color:#5B5B5B;
+  height: 100%;
   }
 
   table th{
@@ -16,3 +17,11 @@ body{
     color:#5B5B5B;
   }
 
+  .msg-error{
+    color: crimson;
+    font-size: 12px;
+  }
+
+  .red{
+    color: crimson;
+  }
