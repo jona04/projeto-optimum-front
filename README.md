@@ -16,7 +16,7 @@ Rode `ng build` para construir o projeto. A construção dos artefatos serão ar
 
 ## API
 
-Ao iniciar o Web service verifique no arquivo `pessoa.server.js` o endereço para onde está apontado o api. Altere para o endereço local: `http://localhost:8080`.
+Ao iniciar o Web service verifique no arquivo `pessoa.server.js` o endereço para onde está apontado o api. Altere para o endereço local `http://localhost:8080` caso não esteja configurado para o mesmo.
 
 Para que esse Web service funcione corretamente é necessário instalar sua versão backend que encontra-se no link abaixo:
 
