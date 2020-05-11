@@ -8,7 +8,7 @@ Projeto gerado com [Angular CLI](https://github.com/angular/angular-cli) versão
 
 ## Rodando servidor
 
-Digite no Terminal e CMD `node server.js` para rodar o servidor em modo desenvolvimento. Em seguida navege para `http://localhost:8000/`.
+Digite no Terminal ou CMD `node server.js` para rodar o servidor em modo desenvolvimento. Em seguida navege para `http://localhost:8000/`.
 
 ## Build
 
@@ -16,7 +16,7 @@ Rode `ng build` para construir o projeto. A construção dos artefatos serão ar
 
 ## API
 
-Ao iniciar o Web service verifique no arquivo `pessoa.server.js` o endereço para onde está apontado o api. Altere para o endereço local `http://localhost:8080` caso não esteja configurado para o mesmo.
+Ao iniciar o Web service verifique no arquivo `pessoa.service.js` o endereço para onde está apontado o api. Altere para o endereço local `http://localhost:8080` caso não esteja configurado para o mesmo.
 
 Para que esse Web service funcione corretamente é necessário instalar sua versão backend que encontra-se no link abaixo:
 
