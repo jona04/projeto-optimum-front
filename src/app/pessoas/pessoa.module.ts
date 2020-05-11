@@ -9,12 +9,12 @@ import { HttpClientModule } from '@angular/common/http';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
 };
+
 
 @NgModule({
   declarations:[
@@ -27,8 +27,8 @@ const maskConfig: Partial<IConfig> = {
     CommonModule,
     CamposModule,
     HttpClientModule,
-    NgxMaskModule.forRoot(maskConfig),
-    NgbModule
+    NgbModule,
+    NgxMaskModule.forRoot(maskConfig)
   ]
 })
 export class PessoaModule{}

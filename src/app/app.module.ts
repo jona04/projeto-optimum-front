@@ -9,6 +9,7 @@ import { Error404Component } from './error404/error404.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { ShareModule } from './shared/shared.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
