@@ -26,42 +26,50 @@
   </div>
 </ng-template>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>CPF</th>
-      <th>Nascimento</th>
-      <th>Endereço</th>
-      <th>Bairro</th>
-      <th>Cidade</th>
-      <th>Estado</th>
-      <th>CEP</th>
-      <th>Contato</th>
-  </tr>
-  </thead>
+<div *ngIf="loading; else listaPessoas">
+  <div class="spinner-border mx-auto" role="status" style="width: 100px; height:100px">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
 
+<ng-template #listaPessoas>
 
-  <tbody>
-    <tr *ngFor="let pessoa of pessoas; index as i">
-      <td>{{ pessoa.nome }}</td>
-      <td>{{ pessoa.cpf }}</td>
-      <td>{{ pessoa.nascimento }}</td>
-      <td>{{ pessoa.endereco }}</td>
-      <td>{{ pessoa.bairro }}</td>
-      <td>{{ pessoa.cidade }}</td>
-      <td>{{ pessoa.estado }}</td>
-      <td>{{ pessoa.cep }}</td>
-      <td>
-        <button class="btn btn-outline-primary" (click)="verContato(content,i)">Ver contatos</button>
-
-      </td>
-
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Nascimento</th>
+        <th>Endereço</th>
+        <th>Bairro</th>
+        <th>Cidade</th>
+        <th>Estado</th>
+        <th>CEP</th>
+        <th>Contato</th>
     </tr>
-  </tbody>
-</table>
+    </thead>
 
 
+    <tbody>
+      <tr *ngFor="let pessoa of pessoas; index as i">
+        <td>{{ pessoa.nome }}</td>
+        <td>{{ pessoa.cpf }}</td>
+        <td>{{ pessoa.nascimento }}</td>
+        <td>{{ pessoa.endereco }}</td>
+        <td>{{ pessoa.bairro }}</td>
+        <td>{{ pessoa.cidade }}</td>
+        <td>{{ pessoa.estado }}</td>
+        <td>{{ pessoa.cep }}</td>
+        <td>
+          <button class="btn btn-outline-primary" (click)="verContato(content,i)">Ver contatos</button>
+
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+
+</ng-template>
 
 
 

@@ -13,6 +13,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ListarPessoaComponent implements OnInit {
 
+  loading: boolean = true;
   values = '';
   pessoas: Pessoa[] = [];
   pessoa: Pessoa;
@@ -25,6 +26,7 @@ export class ListarPessoaComponent implements OnInit {
                }
 
   ngOnInit(): void{
+    this.loading = true;
     this.retrieveAll();
   }
 
@@ -33,9 +35,11 @@ export class ListarPessoaComponent implements OnInit {
   }
 
   buscar(){
+    this.loading = true;
     this.pessoaService.buscar(this.values).subscribe({
       next: pessoas => {
         this.pessoas = pessoas;
+        this.loading = false;
       },
       error: err => console.log("error", err)
     });
@@ -45,6 +49,7 @@ export class ListarPessoaComponent implements OnInit {
     this.pessoaService.retrieveAll().subscribe({
       next: pessoas => {
         this.pessoas = pessoas;
+        this.loading = false;
       },
       error: err => console.log("error", err)
     });
