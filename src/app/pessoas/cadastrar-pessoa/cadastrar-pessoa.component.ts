@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class CadastrarPessoaComponent implements OnInit {
 
   valor;
-
+  desabilitarBotaorSalvarPessoa: boolean = false;
   cadastro: FormGroup;
   contatos = new FormArray([]);
   contatoFormGroup: FormGroup;
@@ -94,30 +94,28 @@ export class CadastrarPessoaComponent implements OnInit {
 
   salvar(): void{
 
-
+    this.desabilitarBotaorSalvarPessoa = true;
 
     this.validarPessoa();
-
-
-    console.log(this.contatoFormGroup);
-    console.log(this.contatoFormGroup.valid);
 
     if(this.cadastro.valid && this.contatoFormGroup.valid){
 
       this.validarNascimento();
-
-      console.log(this.cadastro.value);
-
-      // alert("Sucesso " + JSON.stringify(this.cadastro.value, null, 4));
 
       this.pessoaService.save(this.cadastro.value).subscribe({
         next: pessoa => {
           console.log('pessoa salva com sucessso ', pessoa);
           alert("Pessoa adicionada com sucesso!");
           this.router.navigate(['/listar-pessoas']);
+          this.desabilitarBotaorSalvarPessoa = false;
         },
-        error: err => alert(err.error.message)
+        error: err => {
+          alert(err.error.message);
+          this.desabilitarBotaorSalvarPessoa = false;
+        }
       });
+    }else{
+      this.desabilitarBotaorSalvarPessoa = false;
     }
   }
 
@@ -143,6 +141,7 @@ export class CadastrarPessoaComponent implements OnInit {
   validarPessoa(){
     this.cadastro.markAllAsTouched();
     if (this.cadastro.invalid){
+      this.desabilitarBotaorSalvarPessoa = false;
       return;
     }
   }

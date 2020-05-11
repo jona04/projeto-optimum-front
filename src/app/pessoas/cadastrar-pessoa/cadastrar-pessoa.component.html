@@ -130,6 +130,6 @@
 
 <br>
 
-<button type="submit" (click)="salvar()" class="btn btn-primary btn-lg btn-block mt-4">Salvar Pessoa</button>
-<button type="reset" (click)="resetar()" class="btn btn-secundary btn-lg btn-block">Limpar formulário</button>
+<button [disabled]="desabilitarBotaorSalvarPessoa" type="submit" (click)="salvar()" class="btn btn-primary btn-lg btn-block mt-4">Salvar Pessoa</button>
+<button [disabled]="desabilitarBotaorSalvarPessoa" type="reset" (click)="resetar()" class="btn btn-secundary btn-lg btn-block">Limpar formulário</button>
 </div>
