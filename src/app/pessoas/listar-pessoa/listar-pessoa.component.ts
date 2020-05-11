@@ -13,6 +13,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ListarPessoaComponent implements OnInit {
 
+  values = '';
   pessoas: Pessoa[] = [];
   pessoa: Pessoa;
   constructor(
@@ -27,7 +28,18 @@ export class ListarPessoaComponent implements OnInit {
     this.retrieveAll();
   }
 
+  onKey(event: any) { // without type info
+    this.values = event.target.value;
+  }
 
+  buscar(){
+    this.pessoaService.buscar(this.values).subscribe({
+      next: pessoas => {
+        this.pessoas = pessoas;
+      },
+      error: err => console.log("error", err)
+    });
+  }
 
   retrieveAll(): void{
     this.pessoaService.retrieveAll().subscribe({

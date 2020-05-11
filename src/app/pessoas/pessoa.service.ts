@@ -8,8 +8,8 @@ import { Pessoa } from '../models/pessoa';
 })
 export class PessoaService{
 
-  // private baseUrl: string = "http://localhost:8080";
-  private baseUrl: string = "https://optimum-api-back.herokuapp.com";
+  private baseUrl: string = "http://localhost:8080";
+  // private baseUrl: string = "https://optimum-api-back.herokuapp.com";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -23,5 +23,10 @@ export class PessoaService{
     return this.httpClient.post<Pessoa>(`${this.baseUrl}/pessoa`, pessoa)
 
   }
+
+  buscar(busca: String):Observable<Pessoa[]>{
+    return this.httpClient.get<Pessoa[]>(`${this.baseUrl}/pessoas/busca?nome=${busca}`);
+  }
+
 
 }
