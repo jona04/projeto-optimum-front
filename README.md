@@ -26,4 +26,4 @@ https://github.com/jona04/projeto-optimum
 
 ## Bugs e Issues abertas
 
-Visualias Issues abertas no gibhub para verificar bugs a resolver.
+Visualiar Issues abertas no gibhub para verificar bugs a resolver.
