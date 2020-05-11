@@ -8,7 +8,8 @@ import { Pessoa } from '../models/pessoa';
 })
 export class PessoaService{
 
-  private baseUrl: string = "http://localhost:8080";
+  // private baseUrl: string = "http://localhost:8080";
+  private baseUrl: string = "https://optimum-api-back.herokuapp.com";
 
   constructor(private httpClient: HttpClient) { }
 
