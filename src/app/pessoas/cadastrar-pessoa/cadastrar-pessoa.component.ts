@@ -106,7 +106,7 @@ export class CadastrarPessoaComponent implements OnInit {
         next: pessoa => {
           console.log('pessoa salva com sucessso ', pessoa);
           alert("Pessoa adicionada com sucesso!");
-          this.router.navigate(['/listar-pessoas']);
+          this.router.navigate(['/pessoas/listar']);
           this.desabilitarBotaorSalvarPessoa = false;
         },
         error: err => {

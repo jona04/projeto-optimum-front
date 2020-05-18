@@ -1,3 +1,4 @@
+import { OauthService } from './oauth.service';
 import { PessoasRoutingModule } from './pessoas/pessoas-routing.module';
 import { PessoaModule } from './pessoas/pessoa.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -29,7 +30,7 @@ import { LayoutComponent } from './layout/layout.component';
     AppRoutingModule
 
   ],
-  providers: [],
+  providers: [OauthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
