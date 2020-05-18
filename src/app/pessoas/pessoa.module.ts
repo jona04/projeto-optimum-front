@@ -1,3 +1,4 @@
+import { PessoasRoutingModule } from './pessoas-routing.module';
 import { CamposModule } from './../shared/components/campos/campos.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -27,6 +28,7 @@ const maskConfig: Partial<IConfig> = {
     CommonModule,
     CamposModule,
     HttpClientModule,
+    PessoasRoutingModule,
     NgbModule,
     NgxMaskModule.forRoot(maskConfig)
   ]

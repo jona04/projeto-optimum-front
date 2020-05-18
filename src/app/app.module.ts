@@ -1,3 +1,4 @@
+import { PessoasRoutingModule } from './pessoas/pessoas-routing.module';
 import { PessoaModule } from './pessoas/pessoa.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -8,13 +9,17 @@ import { AppComponent } from './app.component';
 import { Error404Component } from './error404/error404.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { ShareModule } from './shared/shared.module';
+import { LoginComponent } from './login/login.component';
+import { LayoutComponent } from './layout/layout.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     Error404Component,
-    InicioComponent
+    InicioComponent,
+    LoginComponent,
+    LayoutComponent
   ],
   imports: [
     ShareModule,
@@ -22,6 +27,7 @@ import { ShareModule } from './shared/shared.module';
     FormsModule,
     BrowserModule,
     AppRoutingModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
