@@ -41,13 +41,14 @@ export class PessoaService{
 
   buscar(busca: String):Observable<Pessoa[]>{
 
+    const nome = localStorage.getItem('nome');
     const tokenString = localStorage.getItem('access_token');
     const token = JSON.parse(tokenString);
     const headers = {
       'Authorization': 'Bearer '+token.access_token
     }
 
-    return this.httpClient.get<Pessoa[]>(`${this.baseUrl}/busca?nome=${busca}`, {headers});
+    return this.httpClient.get<Pessoa[]>(`${this.baseUrl}/api/pessoas/busca?nome=${busca}&nomeUsuario=${nome}`, {headers});
   }
 
 
