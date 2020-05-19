@@ -22,7 +22,17 @@ export class LoginComponent{
   ) { }
 
   onSubmit(){
-    this.router.navigate(['/inicio']);
+    this.oauthService.tentarLogar(this.nome, this.senha)
+      .subscribe(resposta => {
+        const access_token = JSON.stringify(resposta);
+        localStorage.setItem('access_token',access_token);
+        localStorage.setItem('nome',this.nome);
+        this.router.navigate(['/inicio']);
+      }, errorResposta => {
+        this.errors = ['Usuario ou senha incorretos'];
+      })
+
+
   }
 
   preparaCadastrar(e){
@@ -43,7 +53,10 @@ export class LoginComponent{
       .salvar(usuario)
       .subscribe( reposta => {
         this.mensagemSucesso = "Cadastro realizado com sucesso. Efetue o login.";
-
+        this.cadastrando = false;
+        this.nome = '';
+        this.senha = '';
+        this.errors = [];
       }, errorResponse => {
         this.mensagemSucesso = null;
         this.errors = errorResponse.error.errors;

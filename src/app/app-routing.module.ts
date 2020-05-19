@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth.guard';
 import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './login/login.component';
 import { InicioComponent } from './inicio/inicio.component';
@@ -7,7 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: '', component: LayoutComponent, children:[
-    { path: 'inicio', component: InicioComponent },
+    { path: 'inicio', component: InicioComponent, canActivate: [AuthGuard] },
     { path: '', redirectTo:'/inicio', pathMatch:'full' },
   ]},
   { path: 'login', component: LoginComponent},

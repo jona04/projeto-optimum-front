@@ -1,8 +1,26 @@
+import { OauthService } from './../../../oauth.service';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+
+  constructor(
+    private oathService: OauthService,
+    private router: Router
+  ){
+
+  }
+
+  logout(e){
+    e.preventDefault();
+    this.oathService.encerrarSessao();
+    this.router.navigate(['/login'])
+  }
+
+
+}

@@ -41,7 +41,10 @@ export class ListarPessoaComponent implements OnInit {
         this.pessoas = pessoas;
         this.loading = false;
       },
-      error: err => console.log("error", err)
+      error: err => {
+        console.log("error", err);
+        this.loading = false;
+      }
     });
   }
 
@@ -51,7 +54,10 @@ export class ListarPessoaComponent implements OnInit {
         this.pessoas = pessoas;
         this.loading = false;
       },
-      error: err => console.log("error", err)
+      error: err => {
+        console.log("error", err);
+        this.loading = false;
+      }
     });
   }
 
